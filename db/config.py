@@ -1,4 +1,7 @@
 from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
 from os import getenv
 from dotenv import load_dotenv
 
@@ -15,3 +18,8 @@ engine_str = (
 )
 
 Engine = create_engine(engine_str)
+
+Base = declarative_base()
+
+Session = sessionmaker(Engine)
+session = Session()
