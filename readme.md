@@ -9,7 +9,10 @@ O teste consistia em:
 
 Instale as dependencias: `make install-deps`
 
-Suba o container do banco (O diretorio `./db/setup/` esta mapeado para o container, arquivos `.sql` serao executados na inicializacao do container): `make up`
+Suba o container do banco: `make up` 
+```
+(O diretorio `./db/setup/` esta mapeado para o container, arquivos `.sql` serao executados na inicializacao do container)
+```
 
 Renomeie o arquivo `.env.example` para `.env` e preencha o campo `URL`
 
@@ -18,7 +21,7 @@ Renomeie o arquivo `.env.example` para `.env` e preencha o campo `URL`
 Primeira execucao:
 `python3 main.py -f`
 
-A flag `-f ou --fetch` enviara uma requisicao get para a url setada no `.env`. E salvara o resultado em um arquivo `resp.json`. As execucoes seguintes podem emitir a flag, o script usara o arquivo.
+A flag `-f` ou `--fetch` enviara uma requisicao get para a url setada no `.env`. E salvara o resultado em um arquivo chamado `resp.json`. As execucoes seguintes podem emitir a flag, o script usara o arquivo gerado.
 
 # Index comparissons
 
