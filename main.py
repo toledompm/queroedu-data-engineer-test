@@ -6,22 +6,24 @@ from json import load
 from os import getenv
 from dotenv import load_dotenv
 
+from domain.contract_service import parse_df, save
+
 load_dotenv()
 
-FILE_NAME = "res.json"
+FILE_NAME = "resp.json"
 URL = getenv("URL")
 
 
-def fetch_data(url, retries=0):
+def fetch_data(url, retries=0, err=None):
     if retries > 2:
-        raise ("Err, too many retries")
+        raise (err)
 
     try:
         r = requests.get(url)
         r.raise_for_status()
-    except requests.exceptions.Timeout:
+    except requests.exceptions.Timeout as e:
         print("timeout, retrying...")
-        fetch_data(url, retries + 1)
+        fetch_data(url, retries + 1, e)
     except requests.exceptions.HTTPError as e:
         raise SystemExit(e)
 
@@ -41,10 +43,12 @@ def main():
         print(
             "File: " + FILE_NAME + " not found, run with --fetch to send a get request"
         )
-        raise SystemExit()
+        raise SystemExit(e)
 
-    df = pandas.DataFrame(data_dict)
-    print(len(df))
+    df = pandas.DataFrame(data_dict["caged"])
+
+    parse_df(df)
+    save(df)
 
 
 main()
