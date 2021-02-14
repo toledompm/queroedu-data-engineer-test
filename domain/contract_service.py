@@ -3,11 +3,13 @@ from locale import setlocale, delocalize, LC_NUMERIC
 from sqlalchemy.sql.sqltypes import CHAR, Integer, Numeric
 from domain.city_service import get_or_create_city
 from domain.contract_entity import Contract
+from tqdm import tqdm
 
 from db.config import session
 
 setlocale(LC_NUMERIC, "en_US.utf8")
 
+tqdm.pandas()
 
 def parse_df(dataframe):
     for col_name, callback in __parse_options__():
@@ -15,7 +17,7 @@ def parse_df(dataframe):
 
 
 def save(dataframe):
-    dataframe.apply(__save_row__, axis=1)
+    dataframe.progress_apply(__save_row__, axis=1)
 
 
 def __save_row__(row):

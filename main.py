@@ -1,6 +1,7 @@
 import requests
 import pandas
 
+from tqdm import tqdm
 from sys import argv
 from json import load
 from os import getenv
