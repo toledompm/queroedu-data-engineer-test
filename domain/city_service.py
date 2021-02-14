@@ -20,7 +20,7 @@ def get_or_create_city(row):
     except Exception as err:
         with open("err.txt", "a") as f:
             f.write(
-                "Error saving city instance: " + city_instance.to_string() + " - " + err
+                "Error saving city instance: " + str(err)
             )
         session.rollback()
         return

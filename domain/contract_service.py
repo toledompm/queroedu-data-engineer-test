@@ -32,10 +32,7 @@ def __save_row__(row):
         input()
         with open("err.txt", "a") as f:
             f.write(
-                "Error saving contract instance: "
-                + contract_instance.to_string()
-                + " - "
-                + str(err)
+                "Error saving contract instance: " + str(err)
             )
         session.rollback()
 
