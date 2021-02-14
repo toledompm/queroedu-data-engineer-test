@@ -1,6 +1,5 @@
 from decimal import Decimal
 from locale import setlocale, delocalize, LC_NUMERIC
-from sqlalchemy.sql.sqltypes import CHAR, Integer, Numeric
 from domain.city_service import get_or_create_city
 from domain.contract_entity import Contract
 from tqdm import tqdm
@@ -17,7 +16,8 @@ def parse_df(dataframe):
 
 
 def save(dataframe):
-    dataframe.progress_apply(__save_row__, axis=1)
+    sorted_df = dataframe.sort_values(['municipio', 'regiao', 'uf'])
+    sorted_df.progress_apply(__save_row__, axis=1)
 
 
 def __save_row__(row):
