@@ -2,7 +2,7 @@ from decimal import Decimal
 from locale import setlocale, delocalize, LC_NUMERIC
 from sqlalchemy.sql.sqltypes import CHAR, Integer, Numeric
 from domain.city_service import get_or_create_city
-from db.contract_entity import Contract
+from domain.contract_entity import Contract
 
 from db.config import session
 

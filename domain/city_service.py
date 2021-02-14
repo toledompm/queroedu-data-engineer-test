@@ -1,4 +1,4 @@
-from db.city_entity import City
+from domain.city_entity import City
 from db.config import session
 
 
